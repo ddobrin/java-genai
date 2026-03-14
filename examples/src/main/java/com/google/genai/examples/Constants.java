@@ -59,7 +59,7 @@ public final class Constants {
   public static final String VEO_MODEL_NAME = "veo-3.1-generate-preview";
 
   /** The name of the embedding model to be used in the examples. */
-  public static final String EMBEDDING_MODEL_NAME = "text-embedding-004";
+  public static final String EMBEDDING_MODEL_NAME = "gemini-embedding-2-preview";
 
   /** The name of the vertex multimodal embedding model to be used in the examples. */
   public static final String VERTEX_MULTIMODAL_EMBEDDING_MODEL_NAME =
