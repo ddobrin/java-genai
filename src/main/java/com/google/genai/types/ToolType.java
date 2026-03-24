@@ -23,46 +23,49 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/** The number of thoughts tokens that the model should generate. */
-public class ThinkingLevel {
+/** The type of tool in the function call. */
+public class ToolType {
 
-  /** Enum representing the known values for ThinkingLevel. */
+  /** Enum representing the known values for ToolType. */
   public enum Known {
-    /** Unspecified thinking level. */
-    THINKING_LEVEL_UNSPECIFIED,
+    /** Unspecified tool type. */
+    TOOL_TYPE_UNSPECIFIED,
 
-    /** MINIMAL thinking level. */
-    MINIMAL,
+    /** Google search tool, maps to Tool.google_search.search_types.web_search. */
+    GOOGLE_SEARCH_WEB,
 
-    /** Low thinking level. */
-    LOW,
+    /** Image search tool, maps to Tool.google_search.search_types.image_search. */
+    GOOGLE_SEARCH_IMAGE,
 
-    /** Medium thinking level. */
-    MEDIUM,
+    /** URL context tool, maps to Tool.url_context. */
+    URL_CONTEXT,
 
-    /** High thinking level. */
-    HIGH
+    /** Google maps tool, maps to Tool.google_maps. */
+    GOOGLE_MAPS,
+
+    /** File search tool, maps to Tool.file_search. */
+    FILE_SEARCH
   }
 
-  private Known thinkingLevelEnum;
+  private Known toolTypeEnum;
   private final String value;
 
   @JsonCreator
-  public ThinkingLevel(String value) {
+  public ToolType(String value) {
     this.value = value;
-    for (Known thinkingLevelEnum : Known.values()) {
-      if (Ascii.equalsIgnoreCase(thinkingLevelEnum.toString(), value)) {
-        this.thinkingLevelEnum = thinkingLevelEnum;
+    for (Known toolTypeEnum : Known.values()) {
+      if (Ascii.equalsIgnoreCase(toolTypeEnum.toString(), value)) {
+        this.toolTypeEnum = toolTypeEnum;
         break;
       }
     }
-    if (this.thinkingLevelEnum == null) {
-      this.thinkingLevelEnum = Known.THINKING_LEVEL_UNSPECIFIED;
+    if (this.toolTypeEnum == null) {
+      this.toolTypeEnum = Known.TOOL_TYPE_UNSPECIFIED;
     }
   }
 
-  public ThinkingLevel(Known knownValue) {
-    this.thinkingLevelEnum = knownValue;
+  public ToolType(Known knownValue) {
+    this.toolTypeEnum = knownValue;
     this.value = knownValue.toString();
   }
 
@@ -84,17 +87,17 @@ public class ThinkingLevel {
       return false;
     }
 
-    if (!(o instanceof ThinkingLevel)) {
+    if (!(o instanceof ToolType)) {
       return false;
     }
 
-    ThinkingLevel other = (ThinkingLevel) o;
+    ToolType other = (ToolType) o;
 
-    if (this.thinkingLevelEnum != Known.THINKING_LEVEL_UNSPECIFIED
-        && other.thinkingLevelEnum != Known.THINKING_LEVEL_UNSPECIFIED) {
-      return this.thinkingLevelEnum == other.thinkingLevelEnum;
-    } else if (this.thinkingLevelEnum == Known.THINKING_LEVEL_UNSPECIFIED
-        && other.thinkingLevelEnum == Known.THINKING_LEVEL_UNSPECIFIED) {
+    if (this.toolTypeEnum != Known.TOOL_TYPE_UNSPECIFIED
+        && other.toolTypeEnum != Known.TOOL_TYPE_UNSPECIFIED) {
+      return this.toolTypeEnum == other.toolTypeEnum;
+    } else if (this.toolTypeEnum == Known.TOOL_TYPE_UNSPECIFIED
+        && other.toolTypeEnum == Known.TOOL_TYPE_UNSPECIFIED) {
       return this.value.equals(other.value);
     }
     return false;
@@ -103,8 +106,8 @@ public class ThinkingLevel {
   @ExcludeFromGeneratedCoverageReport
   @Override
   public int hashCode() {
-    if (this.thinkingLevelEnum != Known.THINKING_LEVEL_UNSPECIFIED) {
-      return this.thinkingLevelEnum.hashCode();
+    if (this.toolTypeEnum != Known.TOOL_TYPE_UNSPECIFIED) {
+      return this.toolTypeEnum.hashCode();
     } else {
       return Objects.hashCode(this.value);
     }
@@ -112,6 +115,6 @@ public class ThinkingLevel {
 
   @ExcludeFromGeneratedCoverageReport
   public Known knownEnum() {
-    return this.thinkingLevelEnum;
+    return this.toolTypeEnum;
   }
 }
